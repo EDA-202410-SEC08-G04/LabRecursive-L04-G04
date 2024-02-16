@@ -63,6 +63,7 @@ def printMenu():
     print("0- Salir")
 
 
+
 def loadData():
     """
     Solicita al controlador que cargue los datos en el modelo
@@ -202,7 +203,9 @@ def menu_cycle():
             # TODO modificar opcion 7 del menu (parte 2)
             isbn = input("Ingrese el ISBN del libro a buscar: ")
             isbn = int(isbn)
-            result = controller.findBookByISBN(control,isbn,recursive=rec)
+            result = controller.findBookByISBN(control,
+            isbn,
+            recursive=rec)
             delta_time = f"{result[0]:.3f}"
             book = result[1]
             print("===== El libro encontrado es: =====")
@@ -214,7 +217,8 @@ def menu_cycle():
 
         elif int(inputs) == 8:
             # TODO modificar opcion 8 del menu (parte 2)
-            result = controller.getBooksAverageRating(control, recursive=rec)
+            result = controller.getBooksAverageRating(control,
+            recursive=rec)
             delta_time = f"{result[0]:.3f}"
             average = result[1]
             print("===== El rating promedio de los libros es: =====")
@@ -229,7 +233,10 @@ def menu_cycle():
             print("Filtra los libros con un rating entre dos valores")
             lower = float(input("Ingrese el rating mínimo: "))
             upper = float(input("Ingrese el rating máximo: "))
-            result = controller.filterBooksByRating(control, lower, upper, recursive=rec)
+            result = controller.filterBooksByRating(control,
+            lower,
+            upper,
+            recursive=rec)
             print("===== Los libros entre", lower, "y", upper, "son: =====")
             delta_time = f"{result[0]:.3f}"
             filtered_list = result[1]
@@ -237,9 +244,10 @@ def menu_cycle():
             print("Para", size, "elementos, tiempo:", str(delta_time), "[ms]")
             print("Algoritmo recursivo:", rec)
             printSortResults(filtered_list)
-
+            
         elif int(inputs) == 10:
             # TODO modificar opcion 10 del menu (parte 2)
+            # configurar si usa algoritmos recursivos
             rec = input("Usar algoritmos recursivos? (S/N): ")
             if rec in bool_lt_opt:
                 rec = True
