@@ -245,9 +245,7 @@ def sortBooks(catalog):
     # TODO examinar el ordenamiento (parte 1)
     # toma la lista de libros del catalogo
     books = catalog["books"]
-    # ordena la lista de libros
     sorted_list = qs.sort(books, compareISBN)
-    # actualiza la lista de libros del catalogo
     catalog["books"] = sorted_list
     return sorted_list
 
