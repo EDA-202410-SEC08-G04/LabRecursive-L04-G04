@@ -200,7 +200,6 @@ def menu_cycle():
             printSortResults(shuffled_list)
 
         elif int(inputs) == 7:
-            # TODO modificar opcion 7 del menu (parte 2)
             isbn = input("Ingrese el ISBN del libro a buscar: ")
             isbn = int(isbn)
             result = controller.findBookByISBN(control,
@@ -209,14 +208,13 @@ def menu_cycle():
             delta_time = f"{result[0]:.3f}"
             book = result[1]
             print("===== El libro encontrado es: =====")
-            print("Para encontrar el libro con ISBN", isbn,
-            ", tiempo:", str(delta_time), "[ms]")
+            print("Para encontrar el libro con ISBN", isbn,", tiempo:", str(delta_time), "[ms]")
             print("Algoritmo recursivo:", rec)
             printSearchResults(book)
             
 
         elif int(inputs) == 8:
-            # TODO modificar opcion 8 del menu (parte 2)
+        
             result = controller.getBooksAverageRating(control,
             recursive=rec)
             delta_time = f"{result[0]:.3f}"
@@ -227,9 +225,10 @@ def menu_cycle():
             average = f"{average:.3f}"
             print("Algoritmo recursivo:", rec)
             print("El rating promedio es:", average)
+            
 
         elif int(inputs) == 9:
-            # TODO modificar opcion 9 del menu (parte 2)
+           
             print("Filtra los libros con un rating entre dos valores")
             lower = float(input("Ingrese el rating mínimo: "))
             upper = float(input("Ingrese el rating máximo: "))
@@ -244,15 +243,15 @@ def menu_cycle():
             print("Para", size, "elementos, tiempo:", str(delta_time), "[ms]")
             print("Algoritmo recursivo:", rec)
             printSortResults(filtered_list)
-            
+
         elif int(inputs) == 10:
             # TODO modificar opcion 10 del menu (parte 2)
-            # configurar si usa algoritmos recursivos
             rec = input("Usar algoritmos recursivos? (S/N): ")
             if rec in bool_lt_opt:
                 rec = True
             else:
                 rec = False
+           
 
         elif int(inputs) == 0:
             working = False
