@@ -160,7 +160,7 @@ def menu_cycle():
         inputs = input("Seleccione una opción para continuar\n")
         if int(inputs) == 1:
             print("Cargando información de los archivos ....")
-            bk, at, tg, bktg = loadData()
+            bk, at,tg, bktg = loadData()
             print("Libros cargados: " + str(bk))
             print("Autores cargados: " + str(at))
             print("Géneros cargados: " + str(tg))

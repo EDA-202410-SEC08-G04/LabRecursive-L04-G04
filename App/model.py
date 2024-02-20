@@ -39,7 +39,6 @@ y otra para géneros
 
 # Construccion de modelos
 
-
 def newCatalog():
     """
     Inicializa el catálogo de libros. Crea una lista vacia para guardar
@@ -64,6 +63,8 @@ def newCatalog():
 
 
 # Funciones para agregar informacion al catalogo
+
+
 
 def addBook(catalog, book):
     # Se adiciona el libro a la lista de libros
@@ -292,7 +293,11 @@ def searchBookByISBN(catalog, bookisbn):
         lista de libros
     """
     # TODO implementar la mascara de la busqueda recursiva (parte 2)
-    pass
+    books = catalog["books"]
+    
+    result = recursiveSearchBookByISBN(books, bookisbn, 0, len(books))
+    
+    return result
 
 
 def recursiveSearchBookByISBN(books, bookisbn, low, high):
@@ -310,7 +315,21 @@ def recursiveSearchBookByISBN(books, bookisbn, low, high):
         int: indice del libro en la lista, -1 si no lo encuentra
     """
     # TODO implementar recursivamente binary search (parte 2)
-    pass
+    
+    high =len(books)
+    low = 0
+    if low <= high:
+        mitad = (low + high)//2
+       
+        nuevo= int(float(books["isbn13"]))
+        if books[mitad].get("isbn13") == bookisbn:
+            return mitad
+        elif books[mitad].get("isbn13") < bookisbn:
+            return recursiveSearchBookByISBN(books, bookisbn, mitad + 1, high)
+        else:
+            return recursiveSearchBookByISBN(books, bookisbn, low, mitad - 1)
+    else:
+        return -1
 
 
 def iterativeSearchBookByISBN(catalog, bookid):
