@@ -363,7 +363,9 @@ def AvgBooksRatings(catalog):
         float: promedio de ratings de los libros en el catalogo
     """
     # TODO implementar la mascara recursiva del calculo del promedio (parte 2)
-    pass
+    books=catalog["books"]
+    
+    recursiveAvgBooksRating(books,0,lt.size(books))
 
 
 def recursiveAvgBooksRating(books, idx, n):
@@ -380,7 +382,24 @@ def recursiveAvgBooksRating(books, idx, n):
         float: promedio de ratings de los libros en la lista
     """
     # TODO implementar recursivamente el calculo del promedio (parte 2)
-    pass
+    
+    
+    
+    if n==0:
+       return None
+   
+    elif idx==n-1:
+        return float(lt.getElement(books,idx)["average_rating"])
+    
+    elif n==1:
+        return float(lt.getElement(books,0)["average_rating"])
+    
+    else: 
+        rating=lt.getElement(books,idx)["average_rating"]
+        return (float(rating)+recursiveAvgBooksRating(books, idx+1, n))/n
+       
+        
+   
 
 
 def iterativeAvgBooksRating(catalog):
@@ -395,8 +414,17 @@ def iterativeAvgBooksRating(catalog):
         float: promedio de ratings de los libros en la lista
     """
     # TODO implementar iterativamente el calculo del promedio (parte 2)
-    pass
-
+    books=catalog["books"]
+    total=0
+    
+    
+    for book in lt.iterator(books):
+        rating=book["average_rating"]
+        total=total+float(rating)
+    average=total/lt.size(books)
+    
+    return average
+        
 
 def filterBooksByRating(catalog, low, high):
     """filteringBooksByRating es la MASCARA para el filtrado recursivo de
