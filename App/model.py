@@ -411,6 +411,11 @@ def filterBooksByRating(catalog, low, high):
     Returns:
         ADT List: listado de libros que cumplen con el rango de rating
     """
+    books = catalog["books"]
+    answer = lt.newList("ARRAY_LIST")
+    return recursiveFilterBooksByRating(books, answer, low, high)
+    
+    
     # TODO implementar la mascara recursiva para filtrar libros (parte 2)
     pass
 
@@ -450,3 +455,10 @@ def iterativeFilterBooksByRating(catalog, low, high):
     """
     # TODO implementar iterativamente el filtrado de libros (parte 2)
     pass
+    books = catalog["books"]
+    result = lt.newList("ARRAY_LIST")
+    for i in range(1, lt.size(books) + 1):
+        book = lt.getElement(books, i)
+        if low <= book["average_rating"] <= high:
+            lt.addLast(result, book)
+    return result
