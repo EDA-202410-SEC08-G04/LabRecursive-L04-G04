@@ -27,6 +27,7 @@ import config as cf
 import sys
 import gc
 # TODO importar la libreria threading (parte 2)
+import threading
 import controller
 from DISClib.ADT import list as lt
 assert cf
@@ -271,4 +272,8 @@ def menu_cycle():
 # main del ejercicio
 if __name__ == "__main__":
     # TODO modificar main para actualizar el límite de recursion de memoria (parte 2)
-    menu_cycle()
+    threading.stack_size(67108864*2) # 128MB stack
+    sys.setrecursionlimit(default_limit*1000000)
+    thread = threading.Thread(target=menu_cycle)
+    thread.start()
+    
