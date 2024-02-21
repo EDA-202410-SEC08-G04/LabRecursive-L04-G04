@@ -435,8 +435,15 @@ def recursiveFilterBooksByRating(books, answer, low, high, idx=1):
     Returns:
         ADT List: lista de libros filtrados
     """
+    
     # TODO implementar recursivamente el filtrado de libros (parte 2)
     pass
+    if idx > lt.size(books):
+        return answer
+    book = lt.getElement(books, idx)
+    if float(low) <= float(book["average_rating"]) <= float(high):
+        lt.addLast(answer, book)
+    return recursiveFilterBooksByRating(books, answer, low, high, idx + 1)
 
 
 def iterativeFilterBooksByRating(catalog, low, high):
@@ -459,6 +466,6 @@ def iterativeFilterBooksByRating(catalog, low, high):
     result = lt.newList("ARRAY_LIST")
     for i in range(1, lt.size(books) + 1):
         book = lt.getElement(books, i)
-        if low <= book["average_rating"] <= high:
+        if float(low) <= book["average_rating"] <= float(high):
             lt.addLast(result, book)
     return result
