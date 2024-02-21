@@ -296,8 +296,8 @@ def searchBookByISBN(catalog, bookisbn):
     books = catalog["books"]
     
     result = recursiveSearchBookByISBN(books, bookisbn, 0, len(books))
-    
-    return result
+    book = books["elements"][result]
+    return book
 
 
 def recursiveSearchBookByISBN(books, bookisbn, low, high):
@@ -316,15 +316,12 @@ def recursiveSearchBookByISBN(books, bookisbn, low, high):
     """
     # TODO implementar recursivamente binary search (parte 2)
     
-    high =len(books)
-    low = 0
+    
     if low <= high:
         mitad = (low + high)//2
-       
-        nuevo= int(float(books["isbn13"]))
-        if books[mitad].get("isbn13") == bookisbn:
+        if books["elements"][mitad]["isbn13"] == bookisbn:
             return mitad
-        elif books[mitad].get("isbn13") < bookisbn:
+        elif books["elements"][mitad]["isbn13"] < bookisbn:
             return recursiveSearchBookByISBN(books, bookisbn, mitad + 1, high)
         else:
             return recursiveSearchBookByISBN(books, bookisbn, low, mitad - 1)
@@ -346,7 +343,23 @@ def iterativeSearchBookByISBN(catalog, bookid):
         lista de libros
     """
     # TODO implementar iterativamente del binary search (parte 2)
-    pass
+    
+    books = catalog["elements"]
+    bookisbn = books["elements"][bookid]["isbn13"]
+    low = 0
+    high = len(books) - 1
+
+    while low <= high:
+        mitad = (low + high) // 2
+
+        if books[mitad]["isbn13"] == bookisbn:
+            return mitad
+        elif books[mitad]["isbn13"] < bookisbn:
+            low = mitad + 1
+        else:
+            high = mitad - 1
+
+    return -1
 
 
 # funciones para calcular estadisticas
